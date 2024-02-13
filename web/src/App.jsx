@@ -1,9 +1,28 @@
+import React from "react";
+import Navbar from "./components/navbar/Navbar.jsx";
+
 function App() {
-  return (
-    <>
-        <h1>Welcome to cerberus</h1>
-    </>
-  )
+    return (
+        <div style={{
+            width: "100vw",
+            height: "100vh",
+            display: "flex",
+            flexDirection: "column"
+        }}>
+            <Navbar/>
+            <div style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "25px",
+                color: "gray"
+            }}>
+                <p>Nothing here yet!</p>
+            </div>
+        </div>
+    );
 }
 
-export default App
+export default App;
