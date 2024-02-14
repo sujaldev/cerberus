@@ -12,7 +12,7 @@ const PaddedBox = styled(Box)(({theme}) => ({
 
 function Panel({title, children}) {
     return (
-        <Card style={{height: "500px"}}>
+        <Card>
             <PaddedBox>
                 <Typography variant="subtitle1" component="h1">{title}</Typography>
             </PaddedBox>
