@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar.jsx";
+import Dashboard from "./layouts/Dashboard.jsx";
 
 function App() {
     return (
@@ -7,7 +8,8 @@ function App() {
             width: "100vw",
             height: "100vh",
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "column",
+            overflowY: "hidden"
         }}>
             <Navbar/>
             <div style={{
@@ -19,7 +21,7 @@ function App() {
                 fontSize: "25px",
                 color: "gray"
             }}>
-                <p>Nothing here yet!</p>
+                <Dashboard/>
             </div>
         </div>
     );
