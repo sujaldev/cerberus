@@ -23,7 +23,7 @@ function Navbar() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-            }} maxWidth="xl">
+            }} maxWidth="80%">
                 <div style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -37,7 +37,7 @@ function Navbar() {
                     }} variant="outlined">
                         <Logo width="50px" height="auto"/>
                     </Card>
-                    <Typography sx={{color: "grey.300"}} variant="h5">
+                    <Typography sx={{color: "grey.100"}} variant="h5">
                         CERBERUS
                     </Typography>
                 </div>

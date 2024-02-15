@@ -6,7 +6,7 @@ import PanelBase from "./PanelBase.jsx";
 
 function Dashboard() {
     return (
-        <PanelBase title={"WireGuard Config"}>
+        <PanelBase title="WireGuard Config">
             <Typography variant="body2">Nothing here yet.</Typography>
         </PanelBase>
     );

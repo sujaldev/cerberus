@@ -14,7 +14,7 @@ function Panel({title, children}) {
     return (
         <Card>
             <PaddedBox>
-                <Typography variant="subtitle1" component="h1">{title}</Typography>
+                <Typography style={{fontWeight: 700}} variant="subtitle1" component="h1">{title}</Typography>
             </PaddedBox>
             <Divider/>
             <PaddedBox>

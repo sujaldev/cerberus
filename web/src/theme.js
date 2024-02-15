@@ -130,24 +130,27 @@ const getDesignTokens = (mode) => ({
         },
     },
     typography: {
+        allVariants: {
+            color: gray[200]
+        },
         fontFamily: ["\"Inter\", \"sans-serif\""].join(","),
         h1: {
-            fontSize: 60,
-            fontWeight: 600,
+            fontSize: 40,
+            fontWeight: 700,
             lineHeight: 78 / 70,
             letterSpacing: -0.2,
         },
         h2: {
-            fontSize: 48,
+            fontSize: 38,
             fontWeight: 600,
             lineHeight: 1.2,
         },
         h3: {
-            fontSize: 42,
+            fontSize: 36,
             lineHeight: 1.2,
         },
         h4: {
-            fontSize: 36,
+            fontSize: 34,
             fontWeight: 500,
             lineHeight: 1.5,
         },
