@@ -15,7 +15,7 @@ function Dashboard() {
     return (
         <Box sx={{width: "100%", height: "100%", overflowY: "scroll"}}>
             <DashboardGrid container columnSpacing={4} rowSpacing={4}>
-                <Grid item xs={4}>
+                <Grid item xs={5}>
                     <WireGuardPanel/>
                 </Grid>
             </DashboardGrid>
