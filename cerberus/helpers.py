@@ -4,9 +4,12 @@ from typing import List
 from mitmproxy import http
 
 try:
-    WEB_URL = f"http://{socket.gethostbyname('host.docker.internal')}:8080/"
+    docker_host = socket.gethostbyname('host.docker.internal')
+    WEB_URL = f"http://{docker_host}:8080/"
+    MIDDLEWARE_URL = f"http://{docker_host}:33359/"
 except socket.gaierror:
     WEB_URL = "http://localhost:8080/"
+    MIDDLEWARE_URL = "http://localhost:33359/"
 
 
 class Router:

@@ -25,9 +25,10 @@ class Addon(Router):
     def request(self, flow: http.HTTPFlow) -> None:
         self.perform_checks(flow)
 
-    def perform_checks(self, flow: http.HTTPFlow) -> None:
+    def perform_checks(self, flow: http.HTTPFlow) -> str:
+        # Returns a string describing which check matched the given flow
         if self.spellchecker.process_typo(flow):
-            return
+            return "typo"
 
 
 addons = [Addon()]
