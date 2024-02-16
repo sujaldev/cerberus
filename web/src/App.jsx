@@ -2,7 +2,11 @@ import React from "react";
 import Navbar from "./components/Navbar.jsx";
 import Dashboard from "./layouts/Dashboard.jsx";
 
+import socket from "./socket.js";
+
 function App() {
+    socket.emit("init");
+
     return (
         <div style={{
             width: "100vw",
