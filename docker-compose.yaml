@@ -1,0 +1,31 @@
+services:
+  web:
+    image: sujaldev/cerberus-web:latest
+    container_name: cerberus-web
+    build: web/
+    ports:
+      - "8080:80"
+
+  core:
+    image: sujaldev/cerberus-mitmproxy:latest
+    container_name: cerberus-mitmproxy
+    build: cerberus/
+    ports:
+      - "33380:33380"
+      - "51820:51820"
+    volumes:
+      - "~/.mitmproxy:/home/mitmproxy/.mitmproxy"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  middleware:
+    image: sujaldev/cerberus-middleware:latest
+    container_name: cerberus-middleware
+    build: middleware/
+    init: true
+    ports:
+      - "33359:33359"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - core
