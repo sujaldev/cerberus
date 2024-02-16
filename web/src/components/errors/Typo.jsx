@@ -22,13 +22,22 @@ function Typo({params}) {
             </Typography>
             <br/>
             <Button variant="outlined" size="large">
-                <Link href={params.get("corrected_url")}>Go to {params.get("corrected_domain")}</Link>
+                <Link onClick={() => {
+                    fetch(`https://mitm.it/cerberus/typo?blacklist=${params.get("original_domain")}`)
+                        .finally(() => {
+                            window.location.replace(params.get("corrected_url"));
+                        });
+                }} href={params.get("corrected_url")}>Go to {params.get("corrected_domain")}</Link>
             </Button>
             <br/>
             <br/>
             <ErrButton variant="outlined" size="large">
-                <Link style={{color: "inherit"}}
-                    href={params.get("original_url")}>Allow {params.get("original_domain")}</Link>
+                <Link href={params.get("original_url")} onClick={() => {
+                    fetch(`https://mitm.it/cerberus/typo?whitelist=${params.get("original_domain")}`)
+                        .finally(() => {
+                            window.location.replace(params.get("original_url"));
+                        });
+                }} style={{color: "inherit"}}>Allow {params.get("original_domain")}</Link>
             </ErrButton>
         </Paper>
     );
