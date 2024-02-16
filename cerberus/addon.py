@@ -1,25 +1,33 @@
-from mitmproxy import ctx, http
+from typo import SpellChecker
+from middleware_handler import MiddlewareHandler
+from helpers import Router
+
+from mitmproxy import http
 
 
-class Addon:
-    @property
-    def wg_conf(self) -> bytes:
-        # There has to be a better way than this.
-        try:
-            return f'{ctx.master.addons.get("proxyserver").servers["wireguard"].client_conf() or ""}'.encode()
-        except KeyError:
-            return b""
+class Addon(Router):
+    def __init__(self):
+        self.spellchecker = SpellChecker()
+        self.middleware_handler = MiddlewareHandler()
 
-    def middleware_recv(self, flow: http.HTTPFlow) -> None:
-        # Handles receiving config data from middleware.
-        path_components = flow.request.path_components[1:]
+        super().__init__(Router.combine_namespaces([
+            self.spellchecker,
+            self.middleware_handler,
+        ]))
 
-        if path_components[0] == "wireguard":
-            flow.response = http.Response.make(content=self.wg_conf)
+    def requestheaders(self, flow: http.HTTPFlow) -> None:
+        path = flow.request.path_components
+
+        # Requests made to the domain "mitm.it" are being (ab)used for internal communication
+        if flow.request.host_header == "mitm.it" and path[0] == "cerberus":
+            self.route(flow)
 
     def request(self, flow: http.HTTPFlow) -> None:
-        if flow.request.host_header == "mitm.it" and flow.request.path_components[0] == "cerberus":
-            return self.middleware_recv(flow)
+        self.perform_checks(flow)
+
+    def perform_checks(self, flow: http.HTTPFlow) -> None:
+        if self.spellchecker.process_typo(flow):
+            return
 
 
 addons = [Addon()]
