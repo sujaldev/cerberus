@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import {styled} from "@mui/material/styles";
 
+import GeoBlockPanel from "../components/Panels/GeoBlockPanel.jsx";
 import WireGuardPanel from "../components/Panels/WireGuardPanel.jsx";
 
 
@@ -17,6 +18,9 @@ function Dashboard() {
             <DashboardGrid container columnSpacing={4} rowSpacing={4}>
                 <Grid item xs={5}>
                     <WireGuardPanel/>
+                </Grid>
+                <Grid item xs={4}>
+                    <GeoBlockPanel/>
                 </Grid>
             </DashboardGrid>
         </Box>

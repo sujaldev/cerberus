@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../components/Navbar.jsx";
 import Dashboard from "../layouts/Dashboard.jsx";
 
@@ -6,6 +6,22 @@ import socket from "../socket.js";
 
 function App() {
     socket.emit("init");
+
+    const [flows, setFlows] = useState([]);
+
+    useEffect(() => {
+        function onAddFlow(value) {
+            setFlows(previous => [...previous, value]);
+        }
+
+        socket.on("add_flow", onAddFlow);
+
+        return () => {
+            socket.off("add_flow", onAddFlow);
+        };
+    }, []);
+
+    console.log(flows);
 
     return (
         <div style={{
