@@ -14,9 +14,10 @@ services:
       - "33380:33380"
       - "51820:51820"
     volumes:
-      - "~/.mitmproxy:/home/mitmproxy/.mitmproxy"
+      - "$HOME/.mitmproxy:/root/mitmproxy/.mitmproxy"
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    network_mode: "host" # temporary fix because I am _this_ close to throwing a towel.
 
   middleware:
     image: sujaldev/cerberus-middleware:latest
