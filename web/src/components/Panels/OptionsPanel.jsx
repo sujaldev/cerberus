@@ -10,10 +10,12 @@ function OptionsPanel() {
     return (
         <PanelBase title="Cerberus Options">
             <div style={{
+                maxHeight: "250px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "20px",
-                padding: "10px 30px"
+                flexWrap: "wrap",
+                gap: "10px",
+                padding: "10px 30px",
             }}>
                 <FormControlLabel control={<Switch/>} label={
                     <Typography padding="10px" variant="subtitle2">Levenshtein Distance</Typography>
@@ -29,6 +31,9 @@ function OptionsPanel() {
                 }/>
                 <FormControlLabel control={<Switch/>} label={
                     <Typography padding="10px" variant="subtitle2">IP Reputation</Typography>
+                }/>
+                <FormControlLabel control={<Switch/>} label={
+                    <Typography padding="10px" variant="subtitle2">Ad Blocking</Typography>
                 }/>
                 <FormControlLabel control={<Switch/>} label={
                     <Typography padding="10px" variant="subtitle2" color="#ffcdd2">Sandbox Run</Typography>

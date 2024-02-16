@@ -5,6 +5,7 @@ import {styled} from "@mui/material/styles";
 
 import GeoBlockPanel from "../components/Panels/GeoBlockPanel.jsx";
 import OptionsPanel from "../components/Panels/OptionsPanel.jsx";
+import SandboxPanel from "../components/Panels/SandboxPanel.jsx";
 import WireGuardPanel from "../components/Panels/WireGuardPanel.jsx";
 
 
@@ -20,11 +21,14 @@ function Dashboard() {
                 <Grid item xs={5}>
                     <WireGuardPanel/>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                     <GeoBlockPanel/>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={4}>
                     <OptionsPanel/>
+                </Grid>
+                <Grid item xs={5}>
+                    <SandboxPanel/>
                 </Grid>
             </DashboardGrid>
         </Box>
