@@ -45,21 +45,29 @@ class SpellChecker(Router):
 
         # assets js file to render react page
         path = flow.request.path_components
-        if path[0] == "assets" and path[1].startswith("index") and path[1].endswith(".js"):
+        if (
+                len(path) == 2
+                and path[0] == "assets"
+                and path[1].startswith("index")
+                and path[1].endswith(".js")
+        ):
             flow.response = http.Response.make(
                 200,
                 requests.get(
                     WEB_URL.removesuffix("/") + "/" + flow.request.path.removeprefix("/")
-                ).content
+                ).content,
+                headers={
+                    "content-type": "application/javascript"
+                }
             )
             return True
 
-        whitelisted = self.state.get(flow.request.host)
+        whitelisted = self.state.get(flow.request.host_header)
 
         if whitelisted:
             return False
 
-        corrected = self.generate_suggestion(flow.request.host)
+        corrected = self.generate_suggestion(flow.request.host_header)
         if not corrected:
             return False
 
@@ -71,12 +79,24 @@ class SpellChecker(Router):
             ))
             return True
 
-        flow.response = http.Response.make(200, self.html.substitute(
-            original_url=flow.request.url,
-            original_host=flow.request.host,
-            corrected_host=corrected,
-            corrected_url=corrected_url
-        ))
+        query_string = f"block?err=typo" + \
+                       f"&corrected_url={corrected_url}" + \
+                       f"&corrected_domain={corrected}" + \
+                       f"&original_url={flow.request.url}" + \
+                       f"&original_domain={flow.request.host_header}"
+
+        if (
+                len(path) == 1
+                and flow.request.query.get("err") == "typo"
+        ):
+            flow.response = http.Response.make(200, requests.get(
+                WEB_URL.removesuffix("/") + "/" + query_string
+            ).content)
+            return True
+
+        flow.response = http.Response.make(301, headers={
+            "location": f"{flow.request.scheme}://{flow.request.host_header}/{query_string}"
+        })
         return True
 
     def generate_suggestion(self, host) -> str | None:
