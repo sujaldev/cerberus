@@ -9,4 +9,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD ["mitmdump", "-q", "-s", "addon.py", "--mode", "wireguard", "--mode", "regular@33380"]
+CMD ["mitmweb", "-q", "-s", "addon.py", "--mode", "wireguard", "--mode", "regular@33380", "--web-port", "33382"]

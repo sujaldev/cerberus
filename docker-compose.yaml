@@ -12,6 +12,7 @@ services:
     build: cerberus/
     ports:
       - "33380:33380"
+      - "33382:33382"
       - "51820:51820"
     volumes:
       - "$HOME/.mitmproxy:/root/mitmproxy/.mitmproxy"
