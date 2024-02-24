@@ -1,0 +1,10 @@
+# core
+requests
+symspellpy
+geoip2
+
+# middleware
+Flask
+flask-socketio
+eventlet
+requests
