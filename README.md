@@ -14,3 +14,8 @@ that wins hackathons, essentially it's just a glorified version of the
 ## Admin Panel
 
 ![admin panel](https://github.com/sujaldev/cerberus/assets/75830554/006e8aa1-659e-4846-9366-aaf266513c6c)
+
+
+## How it works
+
+![architecture-github](https://github.com/sujaldev/cerberus/assets/75830554/cb2c4dc6-3a76-4789-a69c-cee283acbbb5)
